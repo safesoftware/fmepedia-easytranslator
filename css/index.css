@@ -1,0 +1,96 @@
+body {
+	padding-top: 60px;
+}
+
+@media (max-width: 980px) {
+	body{
+		padding-top: 0px;
+	}
+}
+
+.brand{
+	color: #e98300 !important;
+	font-weight: bold;
+}
+
+.fileName{
+	width:222px;
+	height:27px;
+	float:left;
+	padding-top: 13px;
+}
+
+.progress {
+	height:20px;
+	margin-bottom:0;
+}
+
+.progressBar {
+	width:444px;
+	height:30px;
+	float:left;
+	padding-top:10px;
+}
+
+.fileBtn{
+	padding-top: 5px;
+	padding-left:60px;
+	padding-right:42px;
+	width:120px;
+	height:35px;
+	float:right;
+}
+
+.fileRow{
+	height:40px;
+	border-color:#A9A9A9;
+	border-bottom-style: dotted;
+	border-width: 1px;
+}
+
+#fileTable{
+	border-color:#A9A9A9;
+	border-top-style: dotted;
+	border-top-width: 1px;
+}
+
+.results{
+	font-size: 25px;
+	font-style: bold;
+	height: 452px;
+	text-align: center;
+}
+
+.loadingImage{
+
+}
+
+.submissionPage{
+	height: 452px;
+}
+
+#dropzone {
+	font-weight: bold;
+}
+
+#dropzone.in {
+
+	font-size: larger;
+}
+
+#dropzone.hover {
+	background: darkgrey;
+}
+
+#dropzone.fade {
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+	opacity: 1;
+}
+
+#dropText{
+	text-align: center;
+}
