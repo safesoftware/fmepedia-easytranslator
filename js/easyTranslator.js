@@ -8,8 +8,8 @@ $(document).ready(function() {
 
 
 var BuildForm = {
-	token : '6e6025067c3fb256128ab6affd3904f08f381589',
-	host : 'http://localhost',
+	token : '5f988bc979ffa292127892f618e90f9abf838bfe',
+	host : 'http://fmepedia-demos.safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator',
 	workspacePath : "Samples/easyTranslator.fmw",
