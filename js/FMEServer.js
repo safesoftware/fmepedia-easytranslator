@@ -42,6 +42,22 @@ var FMEServer = {
 		});
 
 		return sessionID;
-	}
+	}, 
+	
+	runDataDownload: function (repository, wrkspName, params){
+
+    	var url = svrHost + '/fmedatadownload/' + repository + '/' + wrkspName + '.fmw?' + params;
+
+		$.ajax({
+			url: url, 
+			async: false, 
+			dataType: 'json',
+			success: function(json){
+				result = json;
+			}
+		})
+		return result;
+                	
+    }
 
 }

@@ -8,12 +8,12 @@ $(document).ready(function() {
 
 
 var BuildForm = {
-	token : '5f988bc979ffa292127892f618e90f9abf838bfe',
-	host : 'http://fmepedia-demos.safe-software.fmecloud.com',
+	token : 'bb88a213fe16651c403685af33b73d9ccf197562',
+	host : 'http://fmepedia2014.safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator',
 	workspacePath : "Samples/easyTranslator.fmw",
-	sessionID : "",
+	//sessionID : "",
 
 	init : function() {
 		//prevent carousel from automatically moving
@@ -38,7 +38,6 @@ var BuildForm = {
 		var result = FMEServer.getParams(BuildForm.repository, BuildForm.workspaceName);
 
 		BuildForm.buildParams(result);
-		BuildForm.sessionID = FMEServer.getSessionID(BuildForm.workspacePath);
 
 		//--------------------------------------------------------------
 		//Initialize the drag and drop file upload area
@@ -59,6 +58,7 @@ var BuildForm = {
 					if (!index) {
 						var elemName = file.name;
 						elemName = elemName.replace('.','');
+						elemName = elemName.split(' ').join('');
 
 						var row = $("<div id='row"+ elemName + "' class='fileRow'/>");
 
@@ -81,9 +81,15 @@ var BuildForm = {
 				//them as source datasets for translation
 				var elemName = data.files[0].name;
 				elemName = elemName.replace('.', '');
+				elemName = elemName.split(' ').join('');
+
+				var sessionID = data.jqXHR.responseJSON.serviceResponse.session;
+				var test = 'stop';
 
 				var button = $("<div class='fileBtn'/>");
-				button.append("<button class='btn' onClick='BuildForm.toggleSelection(this)'>Select this File</button>");
+				var customButton = $("<button class='btn' onClick='BuildForm.toggleSelection(this)'>Select this File</button>");
+				customButton.attr('sessionID', sessionID);
+				button.append(customButton);
 				button.insertAfter('#' + elemName);
 			}, 
 
@@ -140,6 +146,7 @@ var BuildForm = {
 
 				var name = data.files[0].name
 				name = name.replace('.', '');
+				name = name.split(' ').join('');
 
 				var progressId = '#progress' + name + ' .bar';
 				$(progressId).css('width', progress + '%');
@@ -175,11 +182,12 @@ var BuildForm = {
 				$('#myCarousel').carousel('next');
 
 				//submit to server
-				var filePath = '$(FME_DATA_REPOSITORY)/Samples/easyTranslator.fmw/' + BuildForm.sessionID + '/';
+				var filePath = '$(FME_DATA_REPOSITORY)/Samples/easyTranslator.fmw/'; 
 
 				for (var i = 0; i < fileList.length; i++){
 					if (fileList[i].lastChild.textContent == 'Selected'){
-						files = files + '"' + filePath + fileList[i].firstChild.textContent + '" ';
+						var sessID = fileList[i].lastChild.firstElementChild.attributes[2].nodeValue;
+						files = files + '"' + filePath + sessID + '/' + fileList[i].firstChild.textContent + '" ';
 					}
 				}
 
@@ -202,7 +210,6 @@ var BuildForm = {
 						 BuildForm.displayResults(result);
 					})
 					.fail(function(textStatus){
-						//needs better error handling
 						var error = textStatus.statusText;		
 						alert("Error submitting job: " + error);	
 					});
