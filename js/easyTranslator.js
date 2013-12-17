@@ -8,12 +8,12 @@ $(document).ready(function() {
 
 
 var BuildForm = {
-	token : 'bb88a213fe16651c403685af33b73d9ccf197562',
-	host : 'http://fmepedia2014.safe-software.fmecloud.com',
+	token : 'b442e0b8ea9f85c1860ee85d8c6709d36ab40bb4',
+	host : 'http://fmepedia2014-safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator',
 	workspacePath : "Samples/easyTranslator.fmw",
-	//sessionID : "",
+	sessionID : "",
 
 	init : function() {
 		//prevent carousel from automatically moving
@@ -36,7 +36,7 @@ var BuildForm = {
 		FMEServer.connectToServer(BuildForm.host, BuildForm.token);
 		//Call server to get list of parameters and potential values
 		var result = FMEServer.getParams(BuildForm.repository, BuildForm.workspaceName);
-
+		this.sessionID = FMEServer.getSessionID(BuildForm.workspacePath);
 		BuildForm.buildParams(result);
 
 		//--------------------------------------------------------------
@@ -44,7 +44,7 @@ var BuildForm = {
 		//--------------------------------------------------------------
 		//control behaviour of the fileuploader
 		$('#fileupload').fileupload({
-			url: BuildForm.host + '/fmedataupload/' + BuildForm.workspacePath,
+			url: BuildForm.host + '/fmedataupload/' + BuildForm.workspacePath + ';jsessionid=' + BuildForm.sessionID,
 			dropzone: $('#dropzone'),
 			autoUpload: true,
 
@@ -87,9 +87,7 @@ var BuildForm = {
 				var test = 'stop';
 
 				var button = $("<div class='fileBtn'/>");
-				var customButton = $("<button class='btn' onClick='BuildForm.toggleSelection(this)'>Select this File</button>");
-				customButton.attr('sessionID', sessionID);
-				button.append(customButton);
+				button.append("<button class='btn' onClick='BuildForm.toggleSelection(this)'>Select this File</button>");
 				button.insertAfter('#' + elemName);
 			}, 
 
@@ -186,8 +184,7 @@ var BuildForm = {
 
 				for (var i = 0; i < fileList.length; i++){
 					if (fileList[i].lastChild.textContent == 'Selected'){
-						var sessID = fileList[i].lastChild.firstElementChild.attributes[2].nodeValue;
-						files = files + '"' + filePath + sessID + '/' + fileList[i].firstChild.textContent + '" ';
+						files = files + '"' + filePath + BuildForm.sessionID + '/' + fileList[i].firstChild.textContent + '" ';
 					}
 				}
 
