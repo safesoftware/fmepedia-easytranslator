@@ -137,6 +137,16 @@ body {
 
 }
 
+.errorMsg{
+  font-size:18px;
+  color: red;
+}
+
+.errorNote{
+  font-size: 19px;
+  font-weight: bold;
+}
+
 .submissionPage{
   height: 452px;
 }
