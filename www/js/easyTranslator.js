@@ -57,7 +57,7 @@ var BuildForm = {
 				$.each(data.files, function(index, file) {
 					if (!index) {
 						var elemName = file.name;
-						elemName = elemName.replace('.','');
+						elemName = elemName.replace(/[.\(\)]/g,'');
 						elemName = elemName.split(' ').join('');
 
 						var row = $("<div id='row"+ elemName + "' class='fileRow'/>");
@@ -80,7 +80,7 @@ var BuildForm = {
 				//update list of uploaded files with button to select 
 				//them as source datasets for translation
 				var elemName = data.files[0].name;
-				elemName = elemName.replace('.', '');
+				elemName = elemName.replace(/[.\(\)]/g, '');
 				elemName = elemName.split(' ').join('');
 
 				var sessionID = data.jqXHR.responseJSON.serviceResponse.session;
@@ -143,7 +143,7 @@ var BuildForm = {
 				var progress = parseInt(data.loaded / data.total * 100, 10);
 
 				var name = data.files[0].name
-				name = name.replace('.', '');
+				name = name.replace(/[.\(\)]/g, '');
 				name = name.split(' ').join('');
 
 				var progressId = '#progress' + name + ' .bar';
