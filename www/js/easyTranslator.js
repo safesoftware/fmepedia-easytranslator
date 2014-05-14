@@ -5,7 +5,7 @@ $(document).ready(function() {
 		server : BuildForm.host,
 		token : BuildForm.token
 	});
-
+	
 	//Call server and get the session ID and path
 	fmes.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
 		BuildForm.session = json.serviceResponse.session;
@@ -21,8 +21,8 @@ $(document).ready(function() {
 });
 
 var BuildForm = {
-	token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
-	host : 'http://fmepedia2014-safe-software.fmecloud.com',
+	token : '5b54785c42636bae104c4f59f35f0d95fd0fea42',
+	host : 'https://fmepedia-safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator.fmw',
 	session : null,
