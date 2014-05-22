@@ -1,19 +1,32 @@
 //Do this as soon as the DOM is ready
 $(document).ready(function() {
 
-	//Build up the form
-	BuildForm.init();
+	var fmes = new FMEServer({
+		server : BuildForm.host,
+		token : BuildForm.token
+	});
+	
+	//Call server and get the session ID and path
+	fmes.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
+		BuildForm.session = json.serviceResponse.session;
+		BuildForm.path = json.serviceResponse.files.folder[0].path;
+		
+		//Call server to get list of parameters and potential values
+		fmes.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
+
+		//Build up the form
+		BuildForm.init();
+	});
 	
 });
-
 
 var BuildForm = {
 	token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
 	host : 'http://fmepedia2014-safe-software.fmecloud.com',
 	repository : 'Samples',
-	workspaceName : 'easyTranslator',
-	workspacePath : "Samples/easyTranslator.fmw",
-	sessionID : "",
+	workspaceName : 'easyTranslator.fmw',
+	session : null,
+	path : null,
 
 	init : function() {
 		//prevent carousel from automatically moving
@@ -33,24 +46,18 @@ var BuildForm = {
 			}
 		})
 
-		FMEServer.connectToServer(BuildForm.host, BuildForm.token);
-		//Call server to get list of parameters and potential values
-		var result = FMEServer.getParams(BuildForm.repository, BuildForm.workspaceName);
-		this.sessionID = FMEServer.getSessionID(BuildForm.workspacePath);
-		BuildForm.buildParams(result);
-
 		//--------------------------------------------------------------
 		//Initialize the drag and drop file upload area
 		//--------------------------------------------------------------
 		//control behaviour of the fileuploader
 		$('#fileupload').fileupload({
-			url: BuildForm.host + '/fmedataupload/' + BuildForm.workspacePath + ';jsessionid=' + BuildForm.sessionID,
-			dropzone: $('#dropzone'),
-			autoUpload: true,
+			url : BuildForm.host + '/fmedataupload/' + BuildForm.repository + '/' +  BuildForm.workspaceName + ';jsessionid=' + BuildForm.session,
+			dropzone : $('#dropzone'),
+			autoUpload : true,
 
 			//when a new file is added either through drag and drop or 
 			//file selection dialog
-			add: function(e, data){
+			add : function(e, data){
 				//displays filename and progress bar for any uploading files
 				$('#fileTable').show();
 				data.context = $('#fileTable');
@@ -76,14 +83,13 @@ var BuildForm = {
 				data.submit();
 			},
 
-			done: function(e, data){
+			done : function(e, data){
 				//update list of uploaded files with button to select 
 				//them as source datasets for translation
 				var elemName = data.files[0].name;
 				elemName = elemName.replace(/[.\(\)]/g, '');
 				elemName = elemName.split(' ').join('');
 
-				var sessionID = data.jqXHR.responseJSON.serviceResponse.session;
 				var test = 'stop';
 
 				var button = $("<div class='fileBtn'/>");
@@ -91,7 +97,7 @@ var BuildForm = {
 				button.insertAfter('#' + elemName);
 			}, 
 
-			fail: function(e, data) {
+			fail : function(e, data) {
 				$.each(data.result.files, function(index, file) {
 					var error = $('<span/>').text(file.error);
 					$(data.context.children()[index])
@@ -100,7 +106,7 @@ var BuildForm = {
 				});
 			},
 
-	        dragover: function(e, data){
+	        dragover : function(e, data){
 	      		//going to use this to change look of 'dropzone'
 	      		//when someone drags a file onto the page
 				var dropZone = $('#dropzone');
@@ -139,7 +145,7 @@ var BuildForm = {
 			},
 
 			//give updates on upload progress of each file
-			progress: function(e, data){
+			progress : function(e, data){
 				var progress = parseInt(data.loaded / data.total * 100, 10);
 
 				var name = data.files[0].name
@@ -179,12 +185,9 @@ var BuildForm = {
 				//advance to submission screen
 				$('#myCarousel').carousel('next');
 
-				//submit to server
-				var filePath = '$(FME_DATA_REPOSITORY)/Samples/easyTranslator.fmw/'; 
-
 				for (var i = 0; i < fileList.length; i++){
 					if (fileList[i].lastChild.textContent == 'Selected'){
-						files = files + '"' + filePath + BuildForm.sessionID + '/' + fileList[i].firstChild.textContent + '" ';
+						files = files + '"' + BuildForm.path + '/' + fileList[i].firstChild.textContent + '" ';
 					}
 				}
 
@@ -196,7 +199,7 @@ var BuildForm = {
 				var outputCoordSys = $('#COORDSYS_Dest')[0].value;
 
 				//build url
-				var submitUrl = BuildForm.host + '/fmedatadownload/' + BuildForm.workspacePath + '?SourceDataset_GENERIC=' + files;
+				var submitUrl = BuildForm.host + '/fmedatadownload/' + BuildForm.repository + '/' +  BuildForm.workspaceName + '?SourceDataset_GENERIC=' + files;
 				submitUrl = submitUrl + '&SourceFormat=' + sourceFormat;
 				submitUrl = submitUrl + '&DestinationFormat=' + destFormat;
 				submitUrl = submitUrl + '&COORDSYS_Dest=' + outputCoordSys + '&opt_responseformat=json';
@@ -261,22 +264,23 @@ var BuildForm = {
 	buildParams : function(json){
 		//parse JSON response
 		//add in drop down menu options from workspace
-		var paramArray = json.serviceResponse.parameters.parameter;
-
+		var paramArray = json;
+		var elements = [ 'SourceFormat', 'DestinationFormat' ];
 		for (var i = 0; i < paramArray.length; i++){
 			//populate drop-down options for choice-type parameters
-			if (paramArray[i].type == 'LOOKUP_CHOICE'){
+			if (elements.indexOf(paramArray[i].name) != -1){
 				//populate drop-down options on page
-				var optionArray = paramArray[i].options.option;
-				for (var x = 0; x < optionArray.length; x++){
-					if (optionArray[x].value == 'SDF3' || optionArray[x].value == 'SQLITE3FDO'){}
-					else{
-						var option = $('<option />', {value: optionArray[x].value, text: optionArray[x].displayAlias});
-						$('#' + paramArray[i].name).append(option);
+				if(paramArray[i].listOptions){
+					var optionArray = paramArray[i].listOptions;
+					for (var x = 0; x < optionArray.length; x++){
+						if (optionArray[x].value != 'SDF3' && optionArray[x].value != 'SQLITE3FDO'){
+							var option = $('<option />', {value: optionArray[x].value, text: optionArray[x].caption});
+							$('#' + paramArray[i].name).append(option);
+						}
 					}
 				}
-			};
-		}  
+			}
+		}
 	},
 
 	toggleSelection : function(e){
