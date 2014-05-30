@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 var BuildForm = {
 	token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
-	host : 'http://fmepedia2014-safe-software.fmecloud.com',
+	host : 'https://fmepedia2014-safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator.fmw',
 	session : null,
