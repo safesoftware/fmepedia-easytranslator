@@ -1,18 +1,18 @@
 //Do this as soon as the DOM is ready
 $(document).ready(function() {
 
-	var fmes = new FMEServer({
+	FMEServer.init({
 		server : BuildForm.host,
 		token : BuildForm.token
 	});
 	
 	//Call server and get the session ID and path
-	fmes.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
+	FMEServer.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
 		BuildForm.session = json.serviceResponse.session;
 		BuildForm.path = json.serviceResponse.files.folder[0].path;
 		
 		//Call server to get list of parameters and potential values
-		fmes.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
+		FMEServer.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
 
 		//Build up the form
 		BuildForm.init();
