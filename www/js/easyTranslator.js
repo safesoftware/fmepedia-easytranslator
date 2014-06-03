@@ -1,18 +1,18 @@
 //Do this as soon as the DOM is ready
 $(document).ready(function() {
 
-	var fmes = new FMEServer({
+	FMEServer.init({
 		server : BuildForm.host,
 		token : BuildForm.token
 	});
 	
 	//Call server and get the session ID and path
-	fmes.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
+	FMEServer.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
 		BuildForm.session = json.serviceResponse.session;
 		BuildForm.path = json.serviceResponse.files.folder[0].path;
 		
 		//Call server to get list of parameters and potential values
-		fmes.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
+		FMEServer.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
 
 		//Build up the form
 		BuildForm.init();
@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 var BuildForm = {
 	token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
-	host : 'http://fmepedia2014-safe-software.fmecloud.com',
+	host : 'https://fmepedia2014-safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator.fmw',
 	session : null,
