@@ -176,3 +176,12 @@ body {
 #dropText{
   text-align: center;
 }
+
+#fileTable:hover{
+  cursor: default;
+}
+
+#tableBody{
+  cursor: pointer;
+  cursor: hand;
+}
