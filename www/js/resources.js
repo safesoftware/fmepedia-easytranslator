@@ -104,7 +104,7 @@ var resources = (function() {
 				var folderDate = document.createElement('td');
 				folderDate.innerHTML = file.date;
 				row.appendChild(folderDate);
-				if (file.name.endsWith('.gdb')){
+				if (file.name.substr(file.name.length-4) == '.gdb'){
 					row.onclick = function(){clickedFile(this)};
 				}
 				else{
