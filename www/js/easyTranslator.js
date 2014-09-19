@@ -1,6 +1,10 @@
 //Do this as soon as the DOM is ready
 $(document).ready(function() {
 
+	$(function () {
+    	$('#myTab a:first').tab('show');
+  	});
+
 	FMEServer.init({
 		server : BuildForm.host,
 		token : BuildForm.token
@@ -21,8 +25,10 @@ $(document).ready(function() {
 });
 
 var BuildForm = {
-	token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
-	host : 'https://fmepedia2014-safe-software.fmecloud.com',
+	//token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
+	//host : 'https://fmepedia2014-safe-software.fmecloud.com',
+	token : '2f0a71936bdf6b7d0efaa2e4b8dc0044fd972163',
+	host : 'http://bd-lkdesktop',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator.fmw',
 	session : null,
@@ -159,7 +165,18 @@ var BuildForm = {
 		});
 	},
 
-	submit : function() {
+	submit : function(){
+		//check which submission tab was used and
+		//use corresponding submit function
+		if ($('#upload').hasClass('active')){
+			this.submitUpload();
+		}
+		if($('#browse').hasClass('active')){
+			this.submitBrowse();
+		}
+	},
+
+	submitUpload : function() {
 		var files = '"'; 
 		var fileList = $('.fileRow');
 
@@ -220,6 +237,51 @@ var BuildForm = {
 						BuildForm.displayResults(error, false);
 					});
 			}
+		}
+	},
+
+	submitBrowse : function() {
+		var file = resources.returnSelected();
+
+		//check a file has been selected 
+		if (file == null){
+			//put out an alert and don't continue with submission
+			$('#form').prepend('<div class="alert alert-error"> Please select a file. <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+		}
+
+		else{
+			//advance to submission screen
+			$('#myCarousel').carousel('next');
+
+			files = encodeURIComponent(file);
+
+			//get parameter values
+			var sourceFormat = $('#SourceFormat')[0].value;	
+			var destFormat = $('#DestinationFormat')[0].value;
+			var outputCoordSys = $('#COORDSYS_Dest')[0].value;
+
+			//build url
+			var submitUrl = BuildForm.host + '/fmedatadownload/' + BuildForm.repository + '/' +  BuildForm.workspaceName + '?SourceDataset_GENERIC=' + files;
+			submitUrl = submitUrl + '&SourceFormat=' + sourceFormat;
+			submitUrl = submitUrl + '&DestinationFormat=' + destFormat;
+			submitUrl = submitUrl + '&COORDSYS_Dest=' + outputCoordSys + '&opt_responseformat=json';
+
+			//submit
+			$.getJSON(submitUrl)
+				.done(function(result){					
+					 BuildForm.displayResults(result, true);
+				})
+				.fail(function(textStatus){
+					//deal with different types of errors
+					//always make sure to hide the loading image and display the back button.
+					//maybe build up error message and then put that into resultStatus in displayResults
+					//error code: textStatus.status
+					//error text: textStatus.statusText
+					//FME Error: textStatus.responseJSON.serviceResponse.fmeTransformationResult.fmeEngineResponse.statusMessage
+					var error = textStatus;		
+					BuildForm.displayResults(error, false);
+				});
+			
 		}
 	},
 
