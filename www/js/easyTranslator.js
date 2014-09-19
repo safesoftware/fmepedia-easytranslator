@@ -25,10 +25,8 @@ $(document).ready(function() {
 });
 
 var BuildForm = {
-	//token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
-	//host : 'https://fmepedia2014-safe-software.fmecloud.com',
-	token : '2f0a71936bdf6b7d0efaa2e4b8dc0044fd972163',
-	host : 'http://bd-lkdesktop',
+	token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
+	host : 'https://fmepedia2014-safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator.fmw',
 	session : null,
