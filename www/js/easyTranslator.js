@@ -4,29 +4,29 @@ $(document).ready(function() {
 	$(function () {
     	$('#myTab a:first').tab('show');
   	});
+  $.getJSON("http://demos.fmeserver.com.s3.amazonaws.com/server-demo-config.json", function(config) {
+    BuildForm.host = config.initObject.server;
+    BuildForm.token = config.initObject.token;
+    FMEServer.init(config.initObject);
+    
+    FMEServer.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
+      BuildForm.session = json.serviceResponse.session;
+      BuildForm.path = json.serviceResponse.files.folder[0].path;
+      
+      //Call server to get list of parameters and potential values
+      FMEServer.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
 
-	FMEServer.init({
-		server : BuildForm.host,
-		token : BuildForm.token
-	});
+      //Build up the form
+      BuildForm.init();
+    });
+  });
 	
 	//Call server and get the session ID and path
-	FMEServer.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
-		BuildForm.session = json.serviceResponse.session;
-		BuildForm.path = json.serviceResponse.files.folder[0].path;
-		
-		//Call server to get list of parameters and potential values
-		FMEServer.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
-
-		//Build up the form
-		BuildForm.init();
-	});
+	
 	
 });
 
 var BuildForm = {
-	token : 'fb1c3ee6828e6814c75512dd4770a02e73d913b8',
-	host : 'https://fmepedia2014-safe-software.fmecloud.com',
 	repository : 'Samples',
 	workspaceName : 'easyTranslator.fmw',
 	session : null,
