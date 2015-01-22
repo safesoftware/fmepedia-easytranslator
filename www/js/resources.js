@@ -1,9 +1,10 @@
 window.onload = function() {
-
-	resources.init({
-		host : "https://fmepedia2014-safe-software.fmecloud.com",
-		token : "fb1c3ee6828e6814c75512dd4770a02e73d913b8",
-		basePath : "/FMEData2014/"
+	$.getJSON("http://demos.fmeserver.com.s3.amazonaws.com/server-demo-config.json", function(config) {
+		resources.init({
+			host : config.initObject.server,
+			token : config.initObject.token,
+			basePath : "/FMEData2014/"
+		});
 	});
 	
 };
