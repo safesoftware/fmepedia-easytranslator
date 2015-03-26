@@ -1,60 +1,62 @@
-#! <?xml version="1.0" encoding="windows-1252" ?>
+#! <?xml version="1.0" encoding="utf-8" ?>
 #! <WORKSPACE
 #    
 #    
 #    Command-line to run this workspace:
 #    
 #    
-#    "/Applications/FME 2014/Engine/fme" /www/fmepedia-easytranslator/fme/EasyTranslator.fmw
+#    C:\Apps\FME_15445\fme.exe C:\safegit\fmepedia-easytranslator\fme\Workspaces\easyTranslator.fmw
 #          --SourceDataset_GENERIC ""
-#          --SourceFormat GUESS_FROM_EXTENSION
+#          --SourceFormat "GUESS_FROM_EXTENSION"
 #          --COORDSYS ""
-#          --GENERIC_OUT_BASE_NAME_GENERIC translated_data
-#          --DestinationFormat ACAD
+#          --GENERIC_OUT_BASE_NAME_GENERIC "translated_data"
+#          --DestinationFormat "ACAD"
 #          --COORDSYS_Dest ""
 #    
 #    
-#! PASSWORD=""
-#! ATTR_TYPE_ENCODING="SDF"
-#! VIEW_POSITION="0 0"
-#! SHOW_INFO_NODES="true"
-#! FME_STROKE_MAX_DEVIATION="0"
-#! BEGIN_PYTHON=""
 #! FME_GEOMETRY_HANDLING="Enhanced"
-#! DESCRIPTION=""
-#! TITLE="Generic format translator"
-#! MAX_LOG_FEATURES="200"
-#! END_TCL=""
-#! FME_BUILD_NUM="14387"
-#! ZOOM_SCALE="100"
-#! CATEGORY=""
-#! REDIRECT_TERMINATORS="NONE"
-#! LEGAL_TERMS_CONDITIONS=""
-#! FME_REPROJECTION_ENGINE="FME"
+#! SHOW_INFO_NODES="true"
+#! FME_DOCUMENT_PRIORGUID="ef386ad1-60eb-4a6c-8941-77ec61340d82"
+#! SOURCE="NONE"
+#! LAST_SAVE_DATE="2015-03-26T11:40:48"
+#! BEGIN_TCL=""
+#! DOC_TOP_LEFT="46 -1516"
+#! FME_STROKE_MAX_DEVIATION="0"
 #! USAGE=""
-#! END_PYTHON=""
-#! HISTORY=""
-#! FME_DOCUMENT_PRIORGUID=""
-#! DOC_TOP_LEFT="46 -941"
+#! FME_SERVER_SERVICES=""
+#! LOG_FILE=""
+#! CATEGORY=""
+#! FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#! FME_DOCUMENT_GUID="b1516121-cc01-44ec-8efb-421fc0341c82"
+#! LAST_SAVE_BUILD="FME(R) 2015.1 (20150222 - Build 15445 - WIN64)"
+#! FME_REPROJECTION_ENGINE="FME"
+#! LOG_MAX_RECORDED_FEATURES="200"
 #! REQUIREMENTS_KEYWORD=""
 #! SOURCE_ROUTING_FILE=""
-#! DESTINATION_ROUTING_FILE=""
 #! DESTINATION="NONE"
-#! LAST_SAVE_DATE="2014-09-19T10:24:58"
-#! FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
-#! WORKSPACE_VERSION="1"
-#! SOURCE="NONE"
-#! LAST_SAVE_BUILD="FME(R) 2014 SP3 (20140811 - Build 14387 - macosx)"
-#! FME_SERVER_SERVICES=""
-#! LOG_MAX_RECORDED_FEATURES="200"
-#! LOG_FILE=""
-#! REQUIREMENTS=""
-#! BEGIN_TCL=""
-#! DOC_EXTENTS="2732 713"
-#! FME_DOCUMENT_GUID="e1862134-4021-11e4-8b8f-9402fae15dc4"
-#! SHOW_ANNOTATIONS="true"
+#! END_TCL=""
+#! ATTR_TYPE_ENCODING="SDF"
 #! IGNORE_READER_FAILURE="No"
+#! DESCRIPTION=""
+#! ZOOM_SCALE="100"
+#! REDIRECT_TERMINATORS="NONE"
+#! FME_BUILD_NUM="15445"
+#! REQUIREMENTS=""
+#! VIEW_POSITION="0 0"
 #! WARN_INVALID_XFORM_PARAM="Yes"
+#! HISTORY=""
+#! TITLE="Generic format translator"
+#! PASSWORD=""
+#! MULTI_WRITER_DATASET_ORDER="BY_ID"
+#! MAX_LOG_FEATURES="200"
+#! LOG_MAX_PRECISION="Yes"
+#! WORKSPACE_VERSION="1"
+#! BEGIN_PYTHON=""
+#! SHOW_ANNOTATIONS="true"
+#! END_PYTHON=""
+#! DESTINATION_ROUTING_FILE=""
+#! DOC_EXTENTS="2732 1383"
+#! LEGAL_TERMS_CONDITIONS=""
 #! >
 #! <DATASETS>
 #! <DATASET
@@ -70,35 +72,37 @@
 #! WRITE_DEFS="true"
 #! DEFLINE_TEMPLATE="fme_type {FME_GEN_GEOMETRY}"
 #! DEFLINE_ATTRS="true"
-#! EXPOSABLE_ATTRS="fme_text_size real64 fme_rotation real64 fme_feature_type char(50) multi_reader_keyword char(50) multi_reader_id int32 fme_dataset char(50) multi_reader_full_id int32 fme_geometry fme_char(50) multi_reader_type char(50) fme_fill_color char(50) fme_basename char(50) fme_text_string char(50) fme_secondary_axis real64 fme_primary_axis real64 fme_sweep_angle real64 fme_start_angle real64 fme_type char(50) fme_format_long_name char(255) fme_format_short_name char(255) fme_color char(50)"
+#! EXPOSABLE_ATTRS="fme_fill_color char(50) fme_feature_type char(50) multi_reader_keyword char(50) multi_reader_type char(50) fme_sweep_angle real64 fme_text_size real64 fme_basename char(50) fme_format_short_name char(255) fme_geometry fme_char(50) fme_text_string char(50) fme_type char(50) multi_reader_full_id int32 fme_primary_axis real64 multi_reader_id int32 fme_format_long_name char(255) fme_dataset char(50) fme_color char(50) fme_rotation real64 fme_start_angle real64 fme_secondary_axis real64"
 #! DEFLINE_PARMS=""
 #! ATTR_INDEX_TYPES=""
 #! ATTR_NAME_INVALID_CHARS=""
 #! SUPPORTS_FEATURE_TYPE_FANOUT="true"
 #! ENABLED="true"
 #! DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#! DATASET_TYPE="FILEURLDIR"
 #! GENERATE_FME_BUILD_NUM="13236"
 #! NAME="&lt;not set&gt; [GENERIC]"
-#! MAX_FEATURES=""
-#! COORDSYS="$(COORDSYS)"
 #! MIN_FEATURES=""
+#! COORDSYS="$(COORDSYS)"
+#! MAX_FEATURES_PER_FEATURE_TYPE=""
 #! FEATURE_TYPES=""
+#! MAX_FEATURES=""
 #! START_FEATURE=""
 #! >
 #! <METAFILE_PARAMETER
-#! NAME="AUTO_PUBLISH"
-#! VALUE="SourceDataset DestDataset GENERIC_OUT_FORMAT"
-#! />
-#! <METAFILE_PARAMETER
 #! NAME="ADVANCED_PARMS"
 #! VALUE="GENERIC_IN_SEARCH_ENVELOPE_MINX GENERIC_IN_SEARCH_ENVELOPE_MINY GENERIC_IN_SEARCH_ENVELOPE_MAXX GENERIC_IN_SEARCH_ENVELOPE_MAXY GENERIC_IN_CLIP_TO_ENVELOPE SEARCH_ENVELOPE_COORDINATE_SYSTEM"
+#! />
+#! <METAFILE_PARAMETER
+#! NAME="AUTO_PUBLISH"
+#! VALUE="SourceDataset DestDataset GENERIC_OUT_FORMAT"
 #! />
 #! </DATASET>
 #! <DATASET
 #! IS_SOURCE="false"
 #! ROLE="WRITER"
 #! FORMAT="GENERIC"
-#! DATASET="/data/fmeserver/DefaultResults"
+#! DATASET="C:/ProgramData/Safe Software/FME Server/DefaultResults"
 #! KEYWORD="GENERIC_2"
 #! MULTI_GEOM_ALLOWED="false"
 #! ATTR_MAX_LENGTH="200"
@@ -107,28 +111,29 @@
 #! WRITE_DEFS="true"
 #! DEFLINE_TEMPLATE="fme_type {FME_GEN_GEOMETRY}"
 #! DEFLINE_ATTRS="true"
-#! EXPOSABLE_ATTRS="fme_secondary_axis real64 fme_dataset char(50) fme_fill_color char(50) fme_text_string char(50) fme_feature_type char(50) fme_format_short_name char(255) fme_text_size real64 fme_format_long_name char(255) fme_start_angle real64 fme_rotation real64 fme_type char(50) fme_geometry fme_char(50) fme_primary_axis real64 fme_sweep_angle real64 fme_basename char(50) fme_color char(50)"
+#! EXPOSABLE_ATTRS="fme_primary_axis real64 fme_feature_type char(50) fme_type char(50) fme_text_string char(50) fme_color char(50) fme_format_long_name char(255) fme_secondary_axis real64 fme_text_size real64 fme_format_short_name char(255) fme_basename char(50) fme_start_angle real64 fme_sweep_angle real64 fme_fill_color char(50) fme_dataset char(50) fme_geometry fme_char(50) fme_rotation real64"
 #! DEFLINE_PARMS=""
 #! ATTR_INDEX_TYPES=""
 #! ATTR_NAME_INVALID_CHARS=""
 #! SUPPORTS_FEATURE_TYPE_FANOUT="true"
 #! ENABLED="true"
 #! DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#! DATASET_TYPE="FILEURLDIR"
 #! GENERATE_FME_BUILD_NUM="13236"
+#! FANOUT_SUFFIX=""
+#! FANOUT_DIRECTORY=""
 #! FANOUT_PREFIX=""
+#! FANOUT_ID_ATTR=""
 #! COORDSYS="$(COORDSYS_Dest)"
 #! FANOUT="No"
-#! FANOUT_SUFFIX=""
-#! FANOUT_ID_ATTR=""
-#! FANOUT_DIRECTORY=""
 #! >
-#! <METAFILE_PARAMETER
-#! NAME="AUTO_PUBLISH"
-#! VALUE="SourceDataset DestDataset GENERIC_OUT_FORMAT"
-#! />
 #! <METAFILE_PARAMETER
 #! NAME="ADVANCED_PARMS"
 #! VALUE="READER_SCHEMAS_TO_SKIP"
+#! />
+#! <METAFILE_PARAMETER
+#! NAME="AUTO_PUBLISH"
+#! VALUE="SourceDataset DestDataset GENERIC_OUT_FORMAT"
 #! />
 #! </DATASET>
 #! </DATASETS>
@@ -548,16 +553,19 @@
 #! <FEATURE_TYPE
 #! IS_SOURCE="false"
 #! NODE_NAME="DYNAMIC"
+#! FEATURE_TYPE_NAME="@Value(fme_feature_type)"
+#! FEATURE_TYPE_NAME_QUALIFIER=""
 #! IS_EDITABLE="true"
 #! IDENTIFIER="7"
 #! FEAT_GEOMTYPE="&lt;NO_GEOMETRY&gt;"
 #! POSITION="2069 -670"
+#! BOUNDING_RECT="2069 -670 0 0"
 #! ORDER="6"
 #! COLLAPSED="false"
 #! KEYWORD="GENERIC_2"
+#! PARMS_EDITED="true"
 #! ENABLED="true"
-#! FANOUT="No"
-#! FANOUT_ID_ATTR=""
+#! SCHEMA_ATTRIBUTE_SOURCE="2"
 #! DYNAMIC_SCHEMA="true"
 #! DYNAMIC_SCHEMA_SOURCES="GENERIC_1"
 #! DYNAMIC_SCHEMA_FEATURE_TYPE="AUTOMATIC"
@@ -572,20 +580,23 @@
 #! <FEATURE_TYPE
 #! IS_SOURCE="true"
 #! NODE_NAME="FeatureTypeName"
+#! FEATURE_TYPE_NAME="@Value(fme_feature_type)"
+#! FEATURE_TYPE_NAME_QUALIFIER=""
 #! IS_EDITABLE="false"
 #! IDENTIFIER="3"
 #! FEAT_GEOMTYPE="fme_line"
 #! POSITION="277 -675"
+#! BOUNDING_RECT="277 -675 0 0"
 #! ORDER="8"
 #! COLLAPSED="true"
 #! KEYWORD="GENERIC_1"
+#! PARMS_EDITED="true"
 #! ENABLED="true"
 #! HIDDEN_USER_ATTRS=""
-#! MERGE="true"
 #! MERGE_FILTER="*"
 #! MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
 #! MERGE_FILTER_CASE_SENSITIVE="false"
-#! DYNAMIC_SCHEMA="false"
+#! DYNAMIC_SCHEMA="true"
 #! >
 #! <FEAT_ATTRIBUTE ATTR_NAME="FNODE_" ATTR_TYPE="decimal(11,0)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
 #! <FEAT_ATTRIBUTE ATTR_NAME="TNODE_" ATTR_TYPE="decimal(11,0)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
@@ -705,12 +716,13 @@
 #! IDENTIFIER="4"
 #! COMMENT_VALUE="&lt;html&gt;&lt;body&gt;This reader feature type&apos;s Merge Parameters&#13;&lt;br&gt;are configured so that all feature types send&#13;&lt;br&gt;their features through this feature type &#13;&lt;br&gt;regardless of name.&lt;/body&gt;&lt;/html&gt;"
 #! POSITION="149 -941"
+#! TOP_LEFT="149 -941"
+#! BOTTOM_RIGHT="149 -941"
+#! BOUNDING_RECT="149 -941 0 0"
 #! ORDER="3"
 #! FOLLOW_ANCHOR="true"
 #! INFO_NODE="false"
-#! TOP_LEFT="149 -941"
-#! BOTTOM_RIGHT="149 -941"
-#! COLOUR="1,1,0.784314,1"
+#! COLOUR="1,1,0.784314,0.192157"
 #! SIZE_POLICY="8"
 #! COMMENT_TYPE="REGULAR"
 #! ANCHORED_NODE="3"
@@ -718,13 +730,14 @@
 #! <COMMENT
 #! IDENTIFIER="2"
 #! COMMENT_VALUE="&lt;html&gt;&lt;body&gt;The Generic Reader allows you to specify&#13;&lt;br&gt;a file to read as well as the format or it will &#13;&lt;br&gt;attempt to guess the format used by the file.&lt;/body&gt;&lt;/html&gt;"
-#! POSITION="93 -228"
+#! POSITION="93 -230"
+#! TOP_LEFT="93 -230"
+#! BOTTOM_RIGHT="93 -230"
+#! BOUNDING_RECT="93 -230 0 0"
 #! ORDER="4"
 #! FOLLOW_ANCHOR="true"
 #! INFO_NODE="false"
-#! TOP_LEFT="93 -228"
-#! BOTTOM_RIGHT="93 -228"
-#! COLOUR="1,1,0.784314,1"
+#! COLOUR="1,1,0.784314,0.192157"
 #! SIZE_POLICY="10"
 #! COMMENT_TYPE="REGULAR"
 #! ANCHORED_NODE="0"
@@ -733,12 +746,13 @@
 #! IDENTIFIER="6"
 #! COMMENT_VALUE="&lt;html&gt;&lt;body&gt;The Generic Writer allows you to specify an&#13;&lt;br&gt;output format for the destination file.&lt;/body&gt;&lt;/html&gt;"
 #! POSITION="1832 -269"
+#! TOP_LEFT="1832 -269"
+#! BOTTOM_RIGHT="1832 -269"
+#! BOUNDING_RECT="1832 -269 0 0"
 #! ORDER="5"
 #! FOLLOW_ANCHOR="true"
 #! INFO_NODE="false"
-#! TOP_LEFT="1832 -269"
-#! BOTTOM_RIGHT="1832 -269"
-#! COLOUR="1,1,0.784314,1"
+#! COLOUR="1,1,0.784314,0.192157"
 #! SIZE_POLICY="10"
 #! COMMENT_TYPE="REGULAR"
 #! ANCHORED_NODE="0"
@@ -747,12 +761,13 @@
 #! IDENTIFIER="9"
 #! COMMENT_VALUE="&lt;html&gt;&lt;body&gt;This writer feature type&apos;s Dynamic Parameters are&#13;&lt;br&gt;configured so that at run time the feature type&apos;s&#13;&lt;br&gt;schema is determined from the source file.&lt;/body&gt;&lt;/html&gt;"
 #! POSITION="1784 -886"
+#! TOP_LEFT="1784 -886"
+#! BOTTOM_RIGHT="1784 -886"
+#! BOUNDING_RECT="1784 -886 0 0"
 #! ORDER="7"
 #! FOLLOW_ANCHOR="true"
 #! INFO_NODE="false"
-#! TOP_LEFT="1784 -886"
-#! BOTTOM_RIGHT="1784 -886"
-#! COLOUR="1,1,0.784314,1"
+#! COLOUR="1,1,0.784314,0.192157"
 #! SIZE_POLICY="8"
 #! COMMENT_TYPE="REGULAR"
 #! ANCHORED_NODE="7"
@@ -767,9 +782,10 @@
 #! DESCRIPTION="&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;"
 #! TOP_LEFT="46 -133"
 #! BOTTOM_RIGHT="1137 -1509"
+#! BOUNDING_RECT="46 -133 1091 1376"
 #! STICKY="true"
-#! COLOUR="0.0705882,0.6,0.682353"
-#! CONTENTS="4 2 3 "
+#! COLOUR="0.0666667,0.6,0.682353"
+#! CONTENTS="4 3 2 "
 #! />
 #! <BOOKMARK
 #! IDENTIFIER="1"
@@ -777,9 +793,10 @@
 #! DESCRIPTION="&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;"
 #! TOP_LEFT="1687 -137"
 #! BOTTOM_RIGHT="2778 -1516"
+#! BOUNDING_RECT="1687 -137 1091 1379"
 #! STICKY="true"
 #! COLOUR="1,0.666667,0"
-#! CONTENTS="7 6 9 "
+#! CONTENTS="7 9 6 "
 #! />
 #! </BOOKMARKS>
 #! <TRANSFORMERS>
@@ -867,7 +884,7 @@ INCLUDE [ if {"$(DestDataset)" != ""} {                          \
  } ]
 #! END_WB_HEADER
 #! START_DEST_HEADER GENERIC GENERIC_2
-DEFAULT_MACRO DestDataset_GENERIC_2 /data/fmeserver/DefaultResults
+DEFAULT_MACRO DestDataset_GENERIC_2 C:/ProgramData/Safe Software/FME Server/DefaultResults
 GUI DIRNAME DestDataset_GENERIC_2 Destination Generic (AnyFormat) Directory:
 DEFAULT_MACRO GENERIC_OUT_FORMAT_GENERIC_2 $(DestinationFormat)
 GENERIC_2_FORMAT "$(GENERIC_OUT_FORMAT_GENERIC_2)"
@@ -886,16 +903,17 @@ GENERIC_2_DATASET "$(DestDataset_GENERIC_2)"
 #! END_DEST_HEADER
 #! END_HEADER
 
-LOG_FILENAME "$(FME_MF_DIR)EasyTranslator.log"
+LOG_FILENAME "$(FME_MF_DIR)easyTranslator.log"
 LOG_APPEND NO
 LOG_MAX_FEATURES 200
 LOG_MAX_RECORDED_FEATURES 200
+LOG_MAX_PRECISION Yes
 FME_REPROJECTION_ENGINE FME
 FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
 FME_GEOMETRY_HANDLING Enhanced
 FME_STROKE_MAX_DEVIATION 0
 MAPPING_FILE_ID Generic<space>format<space>translator
-LOG_FILTER_MASK -1
+LOG_FILTER_MASK -17
 DEFAULT_MACRO DATASET_KEYWORD_GENERIC_1 GENERIC_1
 DEFAULT_MACRO DATASET_KEYWORD_GENERIC_2 GENERIC_2
 # -------------------------------------------------------------------------
@@ -910,34 +928,18 @@ MULTI_READER_CONTINUE_ON_READER_FAILURE No
 
 # -------------------------------------------------------------------------
 
-MACRO WORKSPACE_NAME EasyTranslator
+MACRO WORKSPACE_NAME easyTranslator
 MACRO FME_VIEWER_APP fmedatainspector
 # -------------------------------------------------------------------------
-
-INCLUDE [ if {[info exists env(FME_TEMP)] && [file isdirectory $env(FME_TEMP)]} {set gVisualizerTemp $env(FME_TEMP)}  elseif {[info exists env(TEMP)] && [file isdirectory $env(TEMP)]}  {set gVisualizerTemp $env(TEMP)}  elseif { $tcl_platform(platform) == "unix" } {set gVisualizerTemp "/tmp"} else {set gVisualizerTemp c:};  regsub -all {[ ,&]} {$(WORKSPACE_NAME)} {_} wsname; set gVisualizerTemp $gVisualizerTemp/${wsname}_[clock format [clock seconds] -format %H%M%S];  puts "MACRO WORKSPACE_TEMP_DIR $gVisualizerTemp"; 
-MACRO VISUALIZER_FEATURE_FILE $(WORKSPACE_TEMP_DIR)/inspector.ffs
-MACRO VISUALIZER_SCHEMA_FILE $(WORKSPACE_TEMP_DIR)/inspector.fsc
-MACRO VISUALIZER_CREATE_SPATIAL_INDEX YES
-# -------------------------------------------------------------------------
 GENERIC_1_DEF FeatureTypeName   fme_type                     fme_line   FNODE_                       decimal(11,0)   TNODE_                       decimal(11,0)   LPOLY_                       decimal(11,0)   RPOLY_                       decimal(11,0)   LENGTH                       decimal(18,5)   AIRPORTS_                    decimal(11,0)   AIRPORTS_I                   decimal(11,0)   LINE                         decimal(11,0)   ADD_DATE                     varchar(11)   NBTS                         decimal(11,0)   FILLCHAR                     varchar(1)   NAME                         varchar(12)
-
 # -------------------------------------------------------------------------
 
-Lookup ___KnownFeatureTypes___   FeatureTypeName yes   "" no
-FACTORY_DEF * TeeFactory   FACTORY_NAME "GENERIC_1 Merger"   INPUT FEATURE_TYPE *   OUTPUT FEATURE_TYPE "FeatureTypeName"
-# -------------------------------------------------------------------------
-
-FACTORY_DEF * TestFactory   FACTORY_NAME "Unexpected Input Remover"   INPUT FEATURE_TYPE *   TEST @Lookup(___KnownFeatureTypes___,@FeatureType()) == yes   OUTPUT PASSED FEATURE_TYPE *
-# -------------------------------------------------------------------------
-
-FACTORY_DEF * TeeFactory    FACTORY_NAME "Source -> Generic"    INPUT FEATURE_TYPE *    OUTPUT FEATURE_TYPE *       @Transform(GENERIC,FME_GENERIC,ALIAS_GEOMETRY)
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   INPUT FEATURE_TYPE *       @SupplyAttributes(multi_reader_keyword,GENERIC_1)    ROUTE GENERIC GENERIC_1::FeatureTypeName TO FME_GENERIC ::FeatureTypeName ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+GENERIC_1_MERGE_DEF GENERIC_1::FeatureTypeName GLOB_NOCASE * DEFLINE fme_type,fme_line,FNODE_,decimal<openparen>11<comma>0<closeparen>,TNODE_,decimal<openparen>11<comma>0<closeparen>,LPOLY_,decimal<openparen>11<comma>0<closeparen>,RPOLY_,decimal<openparen>11<comma>0<closeparen>,LENGTH,decimal<openparen>18<comma>5<closeparen>,AIRPORTS_,decimal<openparen>11<comma>0<closeparen>,AIRPORTS_I,decimal<openparen>11<comma>0<closeparen>,LINE,decimal<openparen>11<comma>0<closeparen>,ADD_DATE,varchar<openparen>11<closeparen>,NBTS,decimal<openparen>11<comma>0<closeparen>,FILLCHAR,varchar<openparen>1<closeparen>,NAME,varchar<openparen>12<closeparen>
 DEFAULT_MACRO WB_CURRENT_CONTEXT
 # -------------------------------------------------------------------------
 
-FACTORY_DEF * TeeFactory    FACTORY_NAME "FeatureTypeName -> DYNAMIC Correlator"    INPUT FEATURE_TYPE FeatureTypeName    OUTPUT FEATURE_TYPE __GO_TO_FINAL_OUTPUT_ROUTER__       multi_writer_id 0       @Reproject("$(COORDSYS_Dest)","$(COORDSYS_Dest)")       @Transform(FME_GENERIC,GENERIC)       @SupplyAttributes(ENCODED,fme_template_feature_type,DYNAMIC)       @SupplyAttributes(ENCODED,__wb_out_feat_type__,DYNAMIC)       @CopyAttributes(ENCODED,__wb_out_feat_type__,fme_feature_type)
-# -------------------------------------------------------------------------
-
-FACTORY_DEF * TestFactory   FACTORY_NAME "Final Output Feature Type Router"   INPUT FEATURE_TYPE *   TEST @Value(__wb_out_feat_type__) != ""   OUTPUT PASSED FEATURE_TYPE *     @FeatureType(@Value(__wb_out_feat_type__))   OUTPUT FAILED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC FeatureTypeName TO GENERIC __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>fme_template_feature_type<comma>DYNAMIC<closeparen>,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>DYNAMIC<closeparen>,<at>EvaluateExpression<openparen>ATTR_CREATE_EXPR<comma>__wb_out_feat_type__<comma><lt>at<gt>Value<lt>openparen<gt>fme_feature_type<lt>closeparen<gt><comma>DYNAMIC<closeparen> COORDINATE_SYSTEM $(COORDSYS_Dest) GEOMETRY   OUTPUT ROUTED FEATURE_TYPE * @FeatureType(ENCODED,@Value(__wb_out_feat_type__)) @RemoveAttributes(__wb_out_feat_type__)   OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
 # -------------------------------------------------------------------------
 
 FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
