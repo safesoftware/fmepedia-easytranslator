@@ -8,11 +8,11 @@ $(document).ready(function() {
     BuildForm.host = config.initObject.server;
     BuildForm.token = config.initObject.token;
     FMEServer.init(config.initObject);
-    
+
     FMEServer.getSession(BuildForm.repository, BuildForm.workspaceName, function(json){
       BuildForm.session = json.serviceResponse.session;
       BuildForm.path = json.serviceResponse.files.folder[0].path;
-      
+
       //Call server to get list of parameters and potential values
       FMEServer.getWorkspaceParameters(BuildForm.repository, BuildForm.workspaceName, BuildForm.buildParams);
 
@@ -20,10 +20,10 @@ $(document).ready(function() {
       BuildForm.init();
     });
   });
-	
+
 	//Call server and get the session ID and path
-	
-	
+
+
 });
 
 var BuildForm = {
@@ -55,11 +55,12 @@ var BuildForm = {
 		//--------------------------------------------------------------
 		//control behaviour of the fileuploader
 		$('#fileupload').fileupload({
-			url : BuildForm.host + '/fmedataupload/' + BuildForm.repository + '/' +  BuildForm.workspaceName + ';jsessionid=' + BuildForm.session,
+			url : BuildForm.host + '/fmedataupload/' + BuildForm.repository + '/' +  BuildForm.workspaceName,
+			headers : {'Authorization' : 'fmetoken token=' + BuildForm.token},
 			dropzone : $('#dropzone'),
 			autoUpload : true,
 
-			//when a new file is added either through drag and drop or 
+			//when a new file is added either through drag and drop or
 			//file selection dialog
 			add : function(e, data){
 				//displays filename and progress bar for any uploading files
@@ -88,7 +89,7 @@ var BuildForm = {
 			},
 
 			done : function(e, data){
-				//update list of uploaded files with button to select 
+				//update list of uploaded files with button to select
 				//them as source datasets for translation
 				var elemName = data.files[0].name;
 				elemName = elemName.replace(/[.\(\)]/g, '');
@@ -99,7 +100,7 @@ var BuildForm = {
 				var button = $("<div class='fileBtn'/>");
 				button.append("<button class='btn' onClick='BuildForm.toggleSelection(this)'>Select this File</button>");
 				button.insertAfter('#' + elemName);
-			}, 
+			},
 
 			fail : function(e, data) {
 				$.each(data.result.files, function(index, file) {
@@ -175,7 +176,7 @@ var BuildForm = {
 	},
 
 	submitUpload : function() {
-		var files = '"'; 
+		var files = '"';
 		var fileList = $('.fileRow');
 
 		//check a file has been uploaded and at least one is selected
@@ -209,7 +210,7 @@ var BuildForm = {
 				files = files + '"';
 
 				//get parameter values
-				var sourceFormat = $('#SourceFormat')[0].value;	
+				var sourceFormat = $('#SourceFormat')[0].value;
 				var destFormat = $('#DestinationFormat')[0].value;
 				var outputCoordSys = $('#COORDSYS_Dest')[0].value;
 
@@ -221,7 +222,7 @@ var BuildForm = {
 
 				//submit
 				$.getJSON(submitUrl)
-					.done(function(result){					
+					.done(function(result){
 						 BuildForm.displayResults(result, true);
 					})
 					.fail(function(textStatus){
@@ -231,7 +232,7 @@ var BuildForm = {
 						//error code: textStatus.status
 						//error text: textStatus.statusText
 						//FME Error: textStatus.responseJSON.serviceResponse.fmeTransformationResult.fmeEngineResponse.statusMessage
-						var error = textStatus;		
+						var error = textStatus;
 						BuildForm.displayResults(error, false);
 					});
 			}
@@ -241,7 +242,7 @@ var BuildForm = {
 	submitBrowse : function() {
 		var file = resources.returnSelected();
 
-		//check a file has been selected 
+		//check a file has been selected
 		if (file == null){
 			//put out an alert and don't continue with submission
 			$('#form').prepend('<div class="alert alert-error"> Please select a file. <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
@@ -254,7 +255,7 @@ var BuildForm = {
 			files = encodeURIComponent(file);
 
 			//get parameter values
-			var sourceFormat = $('#SourceFormat')[0].value;	
+			var sourceFormat = $('#SourceFormat')[0].value;
 			var destFormat = $('#DestinationFormat')[0].value;
 			var outputCoordSys = $('#COORDSYS_Dest')[0].value;
 
@@ -266,7 +267,7 @@ var BuildForm = {
 
 			//submit
 			$.getJSON(submitUrl)
-				.done(function(result){					
+				.done(function(result){
 					 BuildForm.displayResults(result, true);
 				})
 				.fail(function(textStatus){
@@ -276,10 +277,10 @@ var BuildForm = {
 					//error code: textStatus.status
 					//error text: textStatus.statusText
 					//FME Error: textStatus.responseJSON.serviceResponse.fmeTransformationResult.fmeEngineResponse.statusMessage
-					var error = textStatus;		
+					var error = textStatus;
 					BuildForm.displayResults(error, false);
 				});
-			
+
 		}
 	},
 
