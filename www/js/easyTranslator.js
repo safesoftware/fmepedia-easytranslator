@@ -287,7 +287,6 @@ var BuildForm = {
 	displayResults : function(result, isSuccess){
 		//hide loading image
 		$('#loadingImage').hide();
-
 		//show back button
 		$('#back').show();
 
@@ -295,31 +294,51 @@ var BuildForm = {
 		var resultStatus = $('<div id="resultStatus" />');
 
 		if (isSuccess){
-			resultStatus.append("<h3>Your data has successfully been translated!</h3>");
-			resultStatus.append("<br />");
-			var resultLink = $('<div id="resultLink" />');
-
-			var link = '<a href="' + result.serviceResponse.url + '">' +"Download Results" + '</a>';
-			resultLink.append(link);
-
-			resultStatus.append(resultLink);
+            if (result.serviceResponse.fmeTransformationResult.fmeEngineResponse.numFeaturesOutput == 0){
+                //var FMEError = result.responseJSON.serviceResponse.fmeTransformationResult.fmeEngineResponse.statusMessage;
+                resultStatus.append("<h3>There was an error processing your data</h3>");
+                resultStatus.append('<br/>');
+                resultStatus.append('<p class="errorMsg">No data available for download. Please check the input data or specify the input data format.</p>');
+                resultStatus.append('<br/>');
+                resultStatus.append('<p class="errorNote">Use the back arrow to return to the start page.</p>');
+            }
+            else{
+                resultStatus.append("<h3>Your data has successfully been translated!</h3>");
+                resultStatus.append("<br />");
+                var resultLink = $('<div id="resultLink" />');
+                var link = '<a href="' + result.serviceResponse.url + '">' +"Download Results" + '</a>';
+                resultLink.append(link);
+                resultStatus.append(resultLink);
+            }
 		}
 		else{
-			var FMEError = result.responseJSON.serviceResponse.fmeTransformationResult.fmeEngineResponse.statusMessage;
-			resultStatus.append("<h3>There was an error submitting your request</h3>");
-			resultStatus.append('<br/>');
-			resultStatus.append('<p class="errorMsg">Error ' + result.status + ': ' + result.statusText + '</p>');
-			if (FMEError == "Translation Successful"){
-				resultStatus.append('<p class="errorMsg">No features were read from the source dataset</p>');
-			}
-			else{
-				resultStatus.append('<p class="errorMsg" >' + FMEError + '</p>');
-			}
-			resultStatus.append('<br/>');
-			resultStatus.append('<p class="errorNote">Use the back arrow to return to the start page.</p>');
+            if (result.status == 422){
+                var FMEError = result.responseJSON.serviceResponse.fmeTransformationResult.fmeEngineResponse.statusMessage;
+                resultStatus.append("<h3>There was an error submitting your request</h3>");
+                resultStatus.append('<br/>');
+                resultStatus.append('<p class="errorMsg">Error. Please try another input data source or specify the input data format</p>');
+                resultStatus.append('<br/>');
+                resultStatus.append('<p class="errorNote">Use the back arrow to return to the start page.</p>');
+                //resultStatus.append('<p class="errorMsg">Error ' + result.status + ': ' + result.statusText + '</p>');
+            }
+            else {
+                var FMEError = result.responseJSON.serviceResponse.fmeTransformationResult.fmeEngineResponse.statusMessage;
+                resultStatus.append("<h3>There was an error submitting your request</h3>");
+                resultStatus.append('<br/>');
+                resultStatus.append('<p class="errorMsg">Error ' + result.status + ': ' + result.statusText + '</p>');
+                if (FMEError == "Translation Successful"){
+                    resultStatus.append('<p class="errorMsg">No features were read from the source dataset</p>');
+                }
+                else{
+                    resultStatus.append('<p class="errorMsg" >' + FMEError + '</p>');
+                }
+                resultStatus.append('<br/>');
+                resultStatus.append('<p class="errorNote">Use the back arrow to return to the start page.</p>');
+        }
 		}
 
 		$('#results').append(resultStatus);
+        //console.log(resultStatus);
 	},
 
 	buildParams : function(json){
