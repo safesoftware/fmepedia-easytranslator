@@ -1,12 +1,16 @@
+if (location.protocol != 'https:')  {
+    location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+
 window.onload = function() {
-	$.getJSON("http://demos.fmeserver.com.s3.amazonaws.com/server-demo-config.json", function(config) {
+	$.getJSON("https://demos.fmeserver.com/server-demo-config.json", function(config) {
 		resources.init({
 			host : config.initObject.server,
 			token : config.initObject.token,
 			basePath : "/FMEData2014/"
 		});
 	});
-	
+
 };
 
 var resources = (function() {
@@ -69,7 +73,7 @@ var resources = (function() {
 				createBreadCrumb(curPath, name);
 			}
 			resources.getDetails('/' + row.getAttribute('path'));
-		}			
+		}
 	}
 
 
@@ -137,7 +141,7 @@ var resources = (function() {
             basePath = params.basePath;
 
 			FMEServer.init ({
-				server : host, 
+				server : host,
 				token : token
 			});
 
@@ -166,4 +170,3 @@ var resources = (function() {
 
 	};
 }());
-
