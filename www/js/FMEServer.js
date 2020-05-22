@@ -18,10 +18,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,7 +29,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- * 
+ *
  *****************************************************************************/
 
 /**
@@ -51,10 +51,10 @@ var FMEServer = ( function() {
             return -1;
         };
     }
-    
+
     if (typeof String.prototype.trim !== 'function') {
         String.prototype.trim = function() {
-            return this.replace(/^\s+|\s+$/g, ''); 
+            return this.replace(/^\s+|\s+$/g, '');
         };
     }
 
@@ -105,7 +105,7 @@ var FMEServer = ( function() {
             params = params || null;
             ctyp = ctyp || null;
             atyp = atyp || getConfig('accept');
-            
+
             if (url.indexOf('?') != -1) {
                 url += '&detail=' + getConfig('detail') + '&token=' + getConfig('token');
             } else {
@@ -184,7 +184,7 @@ var FMEServer = ( function() {
 
     // The FME Server Connection Object
     var fme = {
-        
+
         /**
          * Initialize the FME Server connection object
          * @param {Object} config - The object holding the configuration
@@ -245,8 +245,8 @@ var FMEServer = ( function() {
             /**
              * Converts server host to URL
              */
-            if (getConfig('server').substring(0, 4) != 'http') {
-                getConfig().server = 'http://' + getConfig('server');
+            if (getConfig('server').substring(0, 4) != 'https') {
+                getConfig().server = 'https://' + getConfig('server');
             }
 
             /**
@@ -302,7 +302,7 @@ var FMEServer = ( function() {
             if (getConfig('server').indexOf('https://') != -1) {
                 url = getConfig('server').replace('https://','');
             } else {
-                url = getConfig('server').replace('http://','');
+                url = getConfig('server').replace('https://','');
             }
             var ws = new WebSocket('ws://' + url + ':7078/websocket');
             ws.onopen = function() {
@@ -348,10 +348,10 @@ var FMEServer = ( function() {
                 url += ';jsessionid=' + jsid;
             }
             if(!FormData) { // IE9 and Older Browsers that don't support FormData
-                
+
                 // Random number for form and frame id
                 var random = parseInt(Math.random() * 100000000);
-                
+
                 // Create the invisible iframe for the form target
                 var iframe = document.createElement('iframe');
                 iframe.id = random + '-frame';
@@ -382,10 +382,10 @@ var FMEServer = ( function() {
                 callback({ submit : true, id : random });
 
             } else { // New HTML5 Method for browsers that support FormData
-                
+
                 // Chrome 7+, Firefox 4.0 (2.0), IE 10+, Opera 12+, Safari 5+
                 var params = new FormData();
-                
+
                 // Loop through, support for multiple files
                 for(var i = 0; i < files.files.length; i++) {
                     params.append('files[]', files.files[i]);
@@ -408,7 +408,7 @@ var FMEServer = ( function() {
             var url = buildURL('{{svr}}/fmedataupload/' + repository + '/' + workspace + ';jsessionid=' + jsid);
             ajax(url, callback);
         },
-        
+
         /**
          * Runs a workspace with user uploaded session data
          * @param {String} path - The server path for the session
@@ -1026,6 +1026,6 @@ var FMEServer = ( function() {
 
     /**
      * Return the constructed FMEServer Connection Object
-     */ 
+     */
     return fme;
 }());

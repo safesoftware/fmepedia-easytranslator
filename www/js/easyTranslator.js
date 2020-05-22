@@ -1,10 +1,14 @@
+if (location.protocol != 'https:')  {
+    location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+
 //Do this as soon as the DOM is ready
 $(document).ready(function() {
 
 	$(function () {
     	$('#myTab a:first').tab('show');
   	});
-  $.getJSON("http://demos.fmeserver.com.s3.amazonaws.com/server-demo-config.json", function(config) {
+  $.getJSON("https://demos.fmeserver.com/server-demo-config.json", function(config) {
     BuildForm.host = config.initObject.server;
     BuildForm.token = config.initObject.token;
     FMEServer.init(config.initObject);
