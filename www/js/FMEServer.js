@@ -245,7 +245,7 @@ var FMEServer = ( function() {
             /**
              * Converts server host to URL
              */
-            if (getConfig('server').substring(0, 5) != 'https') {
+            if (getConfig('server').substr(0, 5) != 'https') {
                 getConfig().server = 'https://' + getConfig('server');
             }
 
